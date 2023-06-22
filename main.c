@@ -13,7 +13,7 @@ int main(void)
         {"swap", swap},
         {"add", add},
         {"nop", nop},
-        /* Add more opcodes here */
+
         {NULL, NULL}
     };
 
@@ -24,30 +24,30 @@ int main(void)
 
         line_number++;
 
-        /* Remove trailing newline character */
+
         line[strcspn(line, "\n")] = '\0';
 
-        /* Extract opcode */
+
         opcode = strtok(line, " \n");
 
-        /* Check if opcode exists */
+
         if (opcode == NULL)
             continue;
 
-        /* Find opcode in instruction set */
+
         for (i = 0; instructions[i].opcode != NULL; i++)
         {
             if (strcmp(opcode, instructions[i].opcode) == 0)
             {
-                /* Call opcode function */
+
                 instructions[i].f(&stack, line_number);
 
-                /* Stop searching for opcode */
+
                 break;
             }
         }
 
-        /* If opcode not found, print error message */
+
         if (instructions[i].opcode == NULL)
         {
             fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
